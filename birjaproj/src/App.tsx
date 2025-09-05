@@ -435,7 +435,7 @@ export default function App() {
             Birja Work
           </Typography>
           <Typography variant="subtitle1" className="text-gray-600 home-subtitle" sx={{ color: 'text.secondary' }}>
-            Posturi vacante disponibile
+            Available vacancies
           </Typography>
           <Box className="mt-2">
             {currentUser ? (
@@ -444,7 +444,7 @@ export default function App() {
               </Button>
             ) : (
               <Button component={Link} to="/login" variant="contained" color="primary" className="home-button">
-                Login Angajatori
+                Login (Managers only)
               </Button>
             )}
           </Box>
@@ -525,8 +525,8 @@ export default function App() {
           path="/candidatslist"
           element={
             <Paper elevation={3} className="p-6" aria-live="polite" sx={{ maxWidth: { xs: '100%', sm: 720, md: 900 }, width: '100%', mx: 'auto' }}>
-              <Typography variant="h5" className="mb-4">
-                Candidați pentru anunțurile mele
+              <Typography variant="h5" className="mb-4" align='center'>
+                Applied list for my ads
               </Typography>
               <CandidateList items={candidates} onEdit={updateCandidate} />
             </Paper>
@@ -719,7 +719,7 @@ function EmployerForm({ onCreate }: EmployerFormProps) {
       <ImageUpload images={images} setImages={setImages} />
       <Box className="flex justify-end">
         <Button type="submit" variant="contained" color="primary">
-          Publică anunț
+          Public post
         </Button>
       </Box>
     </Box>
@@ -967,10 +967,10 @@ function EmployerList({ items, onEdit, onDelete }: EmployerListProps) {
                       setForm({}); 
                       setEditImages(parseImages(v.images || null));
                     }}>
-                      Editează
+                      Edit
                     </Button>
                     <Button size="small" onClick={() => onDelete(v.id)}>
-                      Șterge
+                      Delete
                     </Button>
                   </CardActions>
                 </CardContent>
@@ -1200,13 +1200,13 @@ function CandidateList({ items, onEdit }: CandidateListProps) {
   return (
     <Box id="employer-candidates" className="space-y-4">
       <Box className="flex justify-between items-center mb-4">
-        <Typography variant="h6">Candidați</Typography>
+        <Typography variant="h6">Candidates</Typography>
         <Button
           variant="contained"
           color="primary"
           onClick={() => setShowAddForm(true)}
         >
-          Adaugă candidat nou
+          Add new candidate
         </Button>
       </Box>
       
