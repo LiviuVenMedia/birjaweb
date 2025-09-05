@@ -1,0 +1,58 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"] // remove if not needed
+  // output = "../generated/client"  // optional, remove to use default @prisma/client
+}
+
+datasource db {
+  provider = "sqlite" // or postgresql / mysql if you change DB
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  EMPLOYER
+  SEEKER
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  username     String    @unique
+  passwordHash String
+  role         Role
+  createdAt    DateTime  @default(now())
+  vacancies    Vacancy[]
+  applications Application[] @relation("ApplicantApplications")
+}
+
+model Vacancy {
+  id           Int          @id @default(autoincrement())
+  title        String
+  text         String
+  region       String
+  salary       String?
+  profession   String?
+  images       String?
+  createdAt    DateTime     @default(now())
+  owner        User         @relation(fields: [ownerId], references: [id])
+  ownerId      Int
+  applications Application[]
+}
+
+model Application {
+  id          Int       @id @default(autoincrement())
+  name        String
+  phone       String
+  region      String
+  Contract    String?
+  Age         Int?
+  Experience  String?
+  SalaryWorker String?
+  interest    String?
+  images      String?
+  status      String    @default("new")
+  createdAt   DateTime  @default(now())
+  offer       Vacancy   @relation(fields: [offerId], references: [id])
+  offerId     Int
+  applicant   User?     @relation("ApplicantApplications", fields: [applicantId], references: [id])
+  applicantId Int?
+}
