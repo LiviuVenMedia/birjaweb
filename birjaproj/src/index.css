@@ -28,8 +28,18 @@ body {
 }
 
 /* Full-height layout for app container */
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: radial-gradient(1200px 100% at 20% -10%, rgba(200, 161, 90, 0.1) 0%, rgba(0, 0, 0, 0) 60%),
+    radial-gradient(1000px 100% at 100% 10%, rgba(0, 153, 255, 0.08) 0%, rgba(0, 0, 0, 0) 55%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 h1 {
